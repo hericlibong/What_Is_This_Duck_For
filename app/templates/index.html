@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHAT IS THIS DUCK FOR?</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>WHAT IS THIS DUCK FOR?</h1>
+            <p class="subtitle">A Very Serious Rubber Duck Analysis Interface</p>
+        </header>
+
+        <main>
+            <section id="subject-area">
+                <div class="duck-container">
+                    <!-- The Central Object -->
+                    <div class="duck-image-placeholder">
+                        <span class="duck-emoji">🦆</span>
+                        <div class="label">SUBJECT: YELLOW DUCK</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="actions">
+                <div class="button-group">
+                    <button id="analyze-btn" class="btn-primary">ANALYZE THE DUCK</button>
+                    <button class="btn-secondary" onclick="requestInterpretation()">REQUEST DEEPER INTERPRETATION</button>
+                </div>
+                <div class="button-group secondary">
+                    <button class="btn-text" onclick="consultReasoning()">CONSULT ADVANCED DUCK REASONING</button>
+                    <button class="btn-text" onclick="askAgain()">ASK GEMINI AGAIN</button>
+                </div>
+            </section>
+
+            <section id="report-panel">
+                <div class="report-card">
+                    <div class="report-header">ANALYSIS REPORT #001-A</div>
+                    <div id="output-text">
+                        No official conclusion has been reached yet. Press "Analyze the Duck" to begin the inquiry.
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Serious Research. No Practical Purpose.</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

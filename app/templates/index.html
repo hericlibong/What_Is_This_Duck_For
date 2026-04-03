@@ -16,7 +16,6 @@
         <main>
             <section id="subject-area">
                 <div class="duck-container">
-                    <!-- The Central Object -->
                     <div class="duck-image-placeholder">
                         <span class="duck-emoji">🦆</span>
                         <div class="label">SUBJECT: YELLOW DUCK</div>
@@ -25,19 +24,18 @@
             </section>
 
             <section id="actions">
-                <div class="button-group">
-                    <button id="analyze-btn" class="btn-primary">ANALYZE THE DUCK</button>
-                    <button class="btn-secondary" onclick="requestInterpretation()">REQUEST DEEPER INTERPRETATION</button>
-                </div>
-                <div class="button-group secondary">
-                    <button class="btn-text" onclick="consultReasoning()">CONSULT ADVANCED DUCK REASONING</button>
-                    <button class="btn-text" onclick="askAgain()">ASK GEMINI AGAIN</button>
+                <div class="button-grid">
+                    <button class="btn-action btn-primary" onclick="triggerMode('analyze')">ANALYZE THE DUCK</button>
+                    <button class="btn-action btn-secondary" onclick="triggerMode('interpret')">REQUEST DEEPER INTERPRETATION</button>
+                    <button class="btn-action btn-secondary" onclick="triggerMode('escalate')">ESCALATE TO MINISTRY</button>
+                    <button class="btn-action btn-trust" onclick="triggerMode('trust')">TRUST THE DUCK</button>
+                    <button class="btn-action btn-distrust" onclick="triggerMode('distrust')">DO NOT TRUST THE DUCK</button>
                 </div>
             </section>
 
             <section id="report-panel">
                 <div class="report-card">
-                    <div class="report-header">ANALYSIS REPORT #001-A</div>
+                    <div class="report-header">MINISTERIAL ANALYSIS REPORT</div>
                     <div id="output-text">
                         No official conclusion has been reached yet. Press "Analyze the Duck" to begin the inquiry.
                     </div>

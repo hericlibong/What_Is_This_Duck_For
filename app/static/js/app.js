@@ -1,31 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const analyzeBtn = document.getElementById('analyze-btn');
     const outputText = document.getElementById('output-text');
+    const buttons = document.querySelectorAll('.btn-action');
 
-    const handleAction = async (actionLabel) => {
-        analyzeBtn.disabled = true;
-        outputText.innerHTML = `<em>${actionLabel}...</em>`;
+    const modeLabels = {
+        'analyze': 'Initiating Primary Duck Analysis',
+        'interpret': 'Requesting Deeper Philosophical Interpretation',
+        'escalate': 'Escalating to High-Level Ministerial Review',
+        'trust': 'Initiating Full System Trust Protocols',
+        'distrust': 'Scanning for Subversive Synthetic Deviations'
+    };
+
+    window.triggerMode = async (mode) => {
+        // Disable all buttons during analysis
+        buttons.forEach(btn => btn.disabled = true);
+        
+        const initialLabel = modeLabels[mode] || 'Processing';
+        outputText.innerHTML = `<em style="color: #888;">${initialLabel}...</em>`;
         
         try {
-            const response = await fetch('/analyze');
+            // We pass the mode to the backend (to be implemented)
+            const response = await fetch(`/analyze?mode=${mode}`);
             const data = await response.json();
             
             // Artificial delay for "serious" computation
             setTimeout(() => {
                 outputText.innerHTML = data.message;
-                analyzeBtn.disabled = false;
-            }, 1000);
+                buttons.forEach(btn => btn.disabled = false);
+            }, 1200);
             
         } catch (error) {
-            outputText.textContent = 'ERROR: The duck analysis has encountered an existential void.';
-            analyzeBtn.disabled = false;
+            outputText.textContent = 'SYSTEM ERROR: The duck has exceeded known interpretive boundaries.';
+            buttons.forEach(btn => btn.disabled = false);
         }
     };
-
-    analyzeBtn.addEventListener('click', () => handleAction('Initiating core duck scan'));
-
-    // Global functions for the inline onclick handlers
-    window.requestInterpretation = () => handleAction('Accessing deeper interpretive layers');
-    window.consultReasoning = () => handleAction('Querying advanced duck logic systems');
-    window.askAgain = () => handleAction('Re-consulting Gemini for secondary confirmation');
 });

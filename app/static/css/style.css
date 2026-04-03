@@ -4,6 +4,8 @@
     --bg-light: #f9f9f9;
     --border-color: #ddd;
     --text-muted: #666;
+    --trust-color: #2ecc71;
+    --distrust-color: #e74c3c;
 }
 
 body {
@@ -17,7 +19,7 @@ body {
 }
 
 .container {
-    max-width: 700px;
+    max-width: 800px;
     width: 100%;
     text-align: center;
 }
@@ -78,31 +80,39 @@ header h1 {
     margin-bottom: 40px;
 }
 
-.button-group {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 15px;
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
-button {
+.btn-action {
     font-family: inherit;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     border-radius: 8px;
     transition: all 0.2s;
     border: 2px solid var(--primary-color);
-    padding: 12px 24px;
+    padding: 14px 20px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-action:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
 }
 
 .btn-primary {
     background-color: var(--primary-color);
     color: white;
-}
-
-.btn-primary:hover {
-    background-color: #000;
-    transform: translateY(-2px);
+    grid-column: 1 / -1; /* Make it full width if possible */
 }
 
 .btn-secondary {
@@ -110,22 +120,26 @@ button {
     color: var(--primary-color);
 }
 
-.btn-secondary:hover {
-    background-color: #f0f0f0;
+.btn-trust {
+    background-color: white;
+    color: var(--trust-color);
+    border-color: var(--trust-color);
 }
 
-.btn-text {
-    border: none;
-    background: none;
-    color: var(--text-muted);
-    text-decoration: underline;
-    font-size: 0.85rem;
-    padding: 5px;
+.btn-distrust {
+    background-color: white;
+    color: var(--distrust-color);
+    border-color: var(--distrust-color);
 }
 
-.btn-text:hover {
-    color: var(--primary-color);
+.btn-action:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
+.btn-primary:hover:not(:disabled) { background-color: #000; }
+.btn-trust:hover:not(:disabled) { background-color: #fafff8; }
+.btn-distrust:hover:not(:disabled) { background-color: #fff8f8; }
 
 /* Result Panel */
 .report-card {

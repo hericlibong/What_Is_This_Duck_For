@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const modeLabels = {
         'analyze': 'Initiating Primary Duck Analysis',
-        'interpret': 'Requesting Deeper Philosophical Interpretation',
-        'escalate': 'Escalating to High-Level Ministerial Review',
+        'deeper': 'Requesting Deeper Philosophical Interpretation',
+        'ministry': 'Escalating to High-Level Ministerial Review',
         'trust': 'Initiating Full System Trust Protocols',
         'distrust': 'Scanning for Subversive Synthetic Deviations'
     };

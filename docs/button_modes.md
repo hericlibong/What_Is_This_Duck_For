@@ -2,6 +2,16 @@
 
 This document defines the tone and absurdity for the 5 analysis buttons.
 
+## Shared Response Structure
+
+Every mode must produce a response containing exactly these 5 fields. The **mode** changes the *tone and content* of the analysis, but the structure remains constant to ensure consistency in the report panel.
+
+- **`hypothesis`**: A pseudo-scientific or philosophical theory regarding the duck's nature.
+- **`classification`**: A ridiculous technical or bureaucratic category.
+- **`threat_level`**: An arbitrary assessment of the duck's danger to the status quo.
+- **`confidence`**: A statistically irrelevant or cryptic percentage/score.
+- **`conclusion`**: A summary that definitively resolves nothing.
+
 ---
 
 ### 1. Analyze the Duck
@@ -15,7 +25,7 @@ This document defines the tone and absurdity for the 5 analysis buttons.
 
 ### 2. Request Deeper Interpretation
 - **Button Label**: REQUEST DEEPER INTERPRETATION
-- **Internal Mode**: `interpret`
+- **Internal Mode**: `deeper`
 - **Role**: Intellectual and philosophical overreach.
 - **Tone**: Pretentious, existential, poetic.
 - **Absurdity Angle**: Treating the duck as a high-art metaphor or a cosmic anchor for human consciousness.
@@ -24,7 +34,7 @@ This document defines the tone and absurdity for the 5 analysis buttons.
 
 ### 3. Escalate to Ministry
 - **Button Label**: ESCALATE TO MINISTRY
-- **Internal Mode**: `escalate`
+- **Internal Mode**: `ministry`
 - **Role**: Bureaucratic classification.
 - **Tone**: Formal, rigid, legalistic.
 - **Absurdity Angle**: Citing non-existent regulations, pending forms, and required ministerial stamps.
@@ -37,7 +47,7 @@ This document defines the tone and absurdity for the 5 analysis buttons.
 - **Role**: Mystic reading / symbolic authority.
 - **Tone**: Confident, prophetic, semi-religious.
 - **Absurdity Angle**: The duck as a source of absolute truth or a silent, knowing leader of the bathtub.
-- **Response Style**: Brief, powerful statements. "The Duck Knows." "The Yellow Void Speaks."
+- **Response Style**: Absolute and cryptic declarations that still fulfill all 5 fields.
 - **Typical Conclusion**: "The conclusion is spiritually absolute but logically void."
 
 ### 5. Do Not Trust the Duck

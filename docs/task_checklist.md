@@ -18,7 +18,8 @@ Keep track of the absurdity as it unfolds.
 ## Phase 3: Behavior & Logic (Current)
 - [x] Create `docs/` folder for internal documentation
 - [x] Create project roadmap (`docs/project_plan.md`)
-- [x] Define specific behavior for all 5 buttons (`docs/button_modes.md`)
+- [x] Define specific behavior and shared structure for all 5 buttons (`docs/button_modes.md`)
+- [ ] Align frontend button `mode` keys with normalized spec (`analyze`, `deeper`, `ministry`, `trust`, `distrust`)
 - [ ] Implement multi-mode handler in `app/main.py`
 - [ ] Connect `GeminiService` placeholders to real mode calls
 

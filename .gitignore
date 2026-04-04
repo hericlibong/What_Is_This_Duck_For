@@ -12,3 +12,4 @@ Thumbs.db
 # App
 app/static/img/*
 !app/static/img/.gitkeep
+logs/

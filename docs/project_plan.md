@@ -3,7 +3,7 @@
 A practical roadmap for building the most serious, useless duck analysis interface.
 
 ## Current State
-The project environment is bootstrapped, the FastAPI skeleton is running, and the frontend has the final set of 5 action buttons.
+The writing engine has been stabilized and fine-tuned for high comedic clarity and distinct personas. The core logic is now reliable and produces consistent functional theories.
 
 ## Roadmap
 
@@ -13,21 +13,23 @@ The project environment is bootstrapped, the FastAPI skeleton is running, and th
 - [x] UI base (Single-page, centered on duck)
 - [x] Final button set in the interface
 
-### 2. Behavior & Logic (Current)
-- [ ] Lock the behavior/spec for each of the 5 buttons
-- [ ] Update backend to receive and identify button modes
+### 2. Behavior & Logic (Done)
+- [x] Lock the behavior/spec for each of the 5 buttons
+- [x] Update backend to receive and identify button modes
+- [x] Stabilize generation philosophy (Claim -> Interpretation)
 
-### 3. Gemini Integration
-- [ ] Implement `GeminiService` with specific prompts for each mode
-- [ ] Map button modes to prompt styles (Pseudo-scientific, Bureaucratic, etc.)
-- [ ] Test AI response quality for "serious absurdity"
+### 3. Gemini Integration (Done)
+- [x] Implement `GeminiService` with specific prompts for each mode
+- [x] Calibrate personas (Mock-Expert, Overthinker, Clerk, Believer, Conspiracy Theorist)
+- [x] Verify "Functional Theory" output quality
 
-### 4. Polish & Visuals
+### 4. Polish & Visuals (Next Focus)
+- [ ] UI refinement and visual polish
 - [ ] Improve report panel dynamic updates (loading states, visual feedback)
-- [ ] Refine the rubber duck visual (possibly add a real SVG/image)
+- [ ] Refine the rubber duck visual representation
 - [ ] Aesthetic polish (Brutalist/Bureaucratic touch-ups)
 
 ### 5. Finalization
-- [ ] Final code cleanup and documentation
+- [ ] Final code cleanup and documentation audit
 - [ ] README refinement for submission
-- [ ] Verification of the "3-second joke" rule
+- [ ] Final verification of the "3-second joke clarity" rule

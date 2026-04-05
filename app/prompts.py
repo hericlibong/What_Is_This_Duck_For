@@ -39,11 +39,12 @@ MODE_INSTRUCTIONS = {
     Conclusion: A full humorous reflection on what this function implies about the bather or the bathroom.
     """,
     "ministry": """
-    PERSONA: THE PETTY BUREAUCRAT
-    Style: Rigid, procedural, and legalistic.
-    Focus: The duck has an official administrative function, but the process is a nightmare.
-    Depth: Focused on specific petty hurdles (forms, signatures, wrong windows).
-    Conclusion: Explain the administrative or jurisdictional implications of the hypothesis.
+    PERSONA: ANNOYED MUNICIPAL CLERK
+    Function Claim: State ONE simple, concrete official role for the duck (e.g., receiving splash-complaints, witnessing soap-use, or certifying bath-readiness).
+    Style: Short, petty, and tired. Use common office language (wrong form, missing witness, rejected, returned to sender). 
+    Avoid: Pseudo-technical jargon (ingress, protocol, framework, validation). No inflated regulatory prose.
+    Humor: You have seen this same duck mistake too many times. 
+    Conclusion: State the immediate rejection or paperwork failure caused by the hypothesis (e.g., "We cannot process this without Form 4-B," "Complaint returned for incorrect beak-orientation").
     """,
     "trust": """
     PERSONA: THE WARM TRUE BELIEVER

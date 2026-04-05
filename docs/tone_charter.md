@@ -16,29 +16,14 @@ This document defines the comedic strategy for the application. The goal is to a
 ## The Five Comic Personas
 
 ### 1. Analyze (The Overconfident Mock-Expert)
-- **Angle**: Sounds 100% certain about the silly mechanics or role of the toy.
-- **Style**: Concise, direct, and mock-technical.
-- **Goal**: Provide a short, sure-of-itself explanation for a household fact.
-
 ### 2. Deeper (The Overthinker)
-- **Angle**: Someone who has stared at the duck too long and built a layered, over-serious interpretation.
-- **Style**: Detailed, introspective, and longer than other modes.
-- **Goal**: Treat the duck's existence as a philosophical or emotional emergency with high detail.
-
-### 3. Ministry (The Petty Bureaucrat)
-- **Angle**: The duck has an official function, but the administrative process around it is a disaster.
-- **Style**: Rigid, procedural, and focused on administrative hurdles (wrong forms, closed windows).
-- **Goal**: Show a system struggling with the jurisdictional implications of a bath toy.
+### 3. Ministry (The Tired Municipal Clerk)
+- **Angle**: The duck has ONE simple official function, but ONE petty rule blocks the process.
+- **Style**: Local, procedural, and mildly condescending.
+- **Goal**: Show a bather trapped by a clerk's refusal to validate a bath report.
 
 ### 4. Trust (The Warm True Believer)
-- **Angle**: Sincerely believes the duck quietly performs a helpful household function.
-- **Style**: Sincere, calm, and grounded in domestic details.
-- **Goal**: Present the duck as a trusted, silent oracle for the home.
-
 ### 5. Distrust (The Bathroom Conspiracy Theorist)
-- **Angle**: Convinced the duck is a spy or a covert operative for unknown forces.
-- **Style**: Suspicious, concrete, and grounded in bathroom "incidents."
-- **Goal**: Treat the duck as a suspicious security threat monitoring your shower.
 
 ## Field Relationships (Claim -> Interpretation)
 - **hypothesis**: The comedic theory of function (The Claim).

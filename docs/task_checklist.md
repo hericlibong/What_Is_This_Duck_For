@@ -33,6 +33,13 @@ Keep track of the absurdity as it unfolds.
 - [ ] Refine the loading/scanning visual feedback in the report panel
 - [ ] Final visual audit (spacing, typography, "bureaucratic" feel)
 
+### UI Refactor (feature/ui-refactor)
+- [ ] Apply new title hierarchy
+- [ ] Update button labels
+- [ ] Simplify header
+- [ ] Add About link
+- [ ] Refine report panel layout
+
 ## Phase 6: Final Review
 - [ ] Clean up redundant code/logs
 - [ ] Final documentation audit

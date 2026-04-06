@@ -10,6 +10,12 @@
     --font-heading: "Impact", "Times New Roman", serif; /* Serious institutional header */
     --btn-shadow: 0 4px 0 #888;
     --btn-shadow-active: 0 1px 0 #888;
+    
+    /* Institutional Metallic Palette */
+    --inst-dark: #1a1a1a;
+    --inst-gold: #c5a059;
+    --inst-gold-muted: #a68b54;
+    --inst-beige: #dcd0b9;
 }
 
 body {
@@ -19,7 +25,7 @@ body {
     background-size: 20px 20px;
     color: var(--primary-color);
     margin: 0;
-    padding: 40px 20px;
+    padding: 120px 20px 40px 20px; /* Increased top padding for fixed header */
     display: flex;
     justify-content: center;
     line-height: 1.5;
@@ -31,74 +37,112 @@ body {
     text-align: center;
 }
 
-/* Header Styles - Ministerial Banner */
+/* Header Styles - Fixed Ministerial Banner */
 .site-header {
-    margin-bottom: 60px;
-    border-bottom: 4px double var(--border-color);
-    padding-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--inst-dark);
+    background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    border-bottom: 3px solid var(--inst-gold);
+    padding: 15px 0;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
 }
 
 .ministerial-banner {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 30px;
     text-align: left;
-    flex-wrap: wrap;
 }
 
 .crest-placeholder {
-    width: 60px;
-    height: 60px;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--inst-gold);
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-light);
-    font-size: 2rem;
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    background: #222;
+    font-size: 1.5rem;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.crest-icon {
+    filter: sepia(1) saturate(2) hue-rotate(10deg) brightness(0.8);
 }
 
 .ministerial-titles {
-    flex-grow: 1;
-    min-width: 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-dept {
     font-family: "Times New Roman", serif;
     font-weight: 900;
-    font-size: 1.4rem;
+    color: var(--inst-gold);
+    font-size: 1.2rem;
     letter-spacing: 2px;
-    line-height: 1.1;
+    line-height: 1;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
 
 .sub-dept {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: bold;
+    color: var(--inst-beige);
     letter-spacing: 1px;
-    margin-top: 4px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.minimal-nav {
+    display: flex;
+    align-items: center;
 }
 
 .minimal-nav a {
-    color: var(--primary-color);
+    color: var(--inst-gold-muted);
     text-decoration: none;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: bold;
-    padding: 5px 10px;
-    border: 1px solid transparent;
+    letter-spacing: 1px;
+    padding: 5px 15px;
+    border: 1px solid var(--inst-gold-muted);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
 }
 
 .minimal-nav a:hover, .minimal-nav a:focus {
-    background: var(--primary-color);
-    color: white;
+    background: var(--inst-gold-muted);
+    color: var(--inst-dark);
     outline: none;
+}
+
+/* Page Title Block - Moved out of header for better layout */
+.title-block {
+    margin-bottom: 50px;
 }
 
 .title-block h1 {
     font-family: var(--font-heading);
     font-size: clamp(2.5rem, 8vw, 3.5rem);
-    margin: 20px 0 5px 0;
+    margin: 0 0 5px 0;
     letter-spacing: -1px;
     text-transform: uppercase;
     line-height: 1;

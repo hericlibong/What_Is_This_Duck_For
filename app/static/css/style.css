@@ -1,16 +1,18 @@
 :root {
-    --primary-color: #333;
-    --duck-yellow: #f8db1c;
-    --bg-light: #f9f9f9;
-    --border-color: #ddd;
-    --text-muted: #666;
-    --trust-color: #2ecc71;
-    --distrust-color: #e74c3c;
+    --primary-color: #111;
+    --duck-yellow: #f1c40f;
+    --bg-light: #f4f4f0; /* Manila folder / document paper tone */
+    --border-color: #111; /* Harsh black borders for institutional feel */
+    --text-muted: #555;
+    --trust-color: #27ae60;
+    --distrust-color: #c0392b;
+    --font-ui: "Courier New", Courier, monospace; /* Bureaucratic typewriter/data font */
+    --font-heading: "Impact", "Times New Roman", serif; /* Serious institutional header */
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #eee;
+    font-family: var(--font-ui);
+    background-color: #e8e8e3; /* Slightly darker institutional wall color */
     color: var(--primary-color);
     margin: 0;
     padding: 40px 20px;
@@ -25,17 +27,23 @@ body {
 }
 
 header h1 {
-    font-size: 2.2rem;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
     margin-bottom: 5px;
-    letter-spacing: -0.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .subtitle {
+    font-family: var(--font-ui);
     color: var(--text-muted);
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: 40px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    display: inline-block;
 }
 
 /* Duck Display Area */
@@ -57,8 +65,8 @@ header h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.1);
-    border: 4px solid white;
+    box-shadow: inset 0 0 0 4px var(--border-color), 0 5px 15px rgba(0,0,0,0.2);
+    border: 4px solid var(--bg-light);
 }
 
 .duck-emoji {
@@ -68,11 +76,13 @@ header h1 {
 .label {
     margin-top: 10px;
     font-weight: bold;
-    font-size: 0.7rem;
-    color: rgba(0,0,0,0.5);
-    background: rgba(255,255,255,0.3);
-    padding: 2px 8px;
-    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    background: var(--bg-light);
+    padding: 4px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    text-transform: uppercase;
 }
 
 /* Actions area */
@@ -89,99 +99,112 @@ header h1 {
 }
 
 .btn-action {
-    font-family: inherit;
+    font-family: var(--font-ui);
     font-weight: 700;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 2px; /* Sharper edges */
     transition: all 0.2s;
-    border: 2px solid var(--primary-color);
+    border: 2px solid var(--border-color);
     padding: 14px 20px;
     font-size: 0.85rem;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 2px 2px 0px var(--border-color); /* Harsh flat shadow */
 }
 
 .btn-action:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     transform: none !important;
+    box-shadow: none;
 }
 
 .btn-primary {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--bg-light);
     grid-column: 1 / -1; /* Make it full width if possible */
 }
 
 .btn-secondary {
-    background-color: white;
+    background-color: var(--bg-light);
     color: var(--primary-color);
 }
 
 .btn-trust {
-    background-color: white;
+    background-color: var(--bg-light);
     color: var(--trust-color);
     border-color: var(--trust-color);
+    box-shadow: 2px 2px 0px var(--trust-color);
 }
 
 .btn-distrust {
-    background-color: white;
+    background-color: var(--bg-light);
     color: var(--distrust-color);
     border-color: var(--distrust-color);
+    box-shadow: 2px 2px 0px var(--distrust-color);
 }
 
 .btn-action:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--border-color);
+}
+
+.btn-trust:hover:not(:disabled) {
+    box-shadow: 0px 0px 0px var(--trust-color);
+}
+
+.btn-distrust:hover:not(:disabled) {
+    box-shadow: 0px 0px 0px var(--distrust-color);
 }
 
 .btn-primary:hover:not(:disabled) { background-color: #000; }
-.btn-trust:hover:not(:disabled) { background-color: #fafff8; }
-.btn-distrust:hover:not(:disabled) { background-color: #fff8f8; }
 
 /* Result Panel */
 .report-card {
-    background-color: white;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    background-color: var(--bg-light);
+    border: 2px solid var(--border-color);
+    border-radius: 2px;
     padding: 40px;
     text-align: left;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 4px 4px 0px var(--border-color); /* Harsh document shadow */
 }
 
 .report-content p {
     margin: 8px 0;
 }
 
-.threat-negligible { color: #2ecc71; font-weight: bold; }
-.threat-low { color: #27ae60; font-weight: bold; }
-.threat-moderate { color: #f39c12; font-weight: bold; }
-.threat-elevated { color: #e67e22; font-weight: bold; }
-.threat-unclear { color: #e74c3c; font-weight: bold; }
+.threat-negligible { color: var(--trust-color); font-weight: bold; }
+.threat-low { color: var(--trust-color); font-weight: bold; }
+.threat-moderate { color: #d35400; font-weight: bold; }
+.threat-elevated { color: var(--distrust-color); font-weight: bold; }
+.threat-unclear { color: var(--distrust-color); font-weight: bold; }
 
 .report-header {
-    border-bottom: 2px solid #eee;
-    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
     margin-bottom: 25px;
     font-weight: 800;
-    color: #999;
-    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-size: 0.9rem;
     letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 #output-text {
-    font-size: 1.1rem;
+    font-family: var(--font-ui);
+    font-size: 1rem;
     line-height: 1.6;
-    color: #444;
+    color: var(--primary-color);
     min-height: 100px;
 }
 
 footer {
     margin-top: 60px;
-    color: #bbb;
+    color: var(--text-muted);
     font-size: 0.8rem;
-    border-top: 1px solid #ddd;
+    border-top: 2px solid var(--border-color);
     padding-top: 20px;
+    text-transform: uppercase;
 }

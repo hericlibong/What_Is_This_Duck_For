@@ -27,11 +27,11 @@ Keep track of the absurdity as it unfolds.
 - [x] Enforce "Comic Plausibility" and "Functional Theory" rules
 - [x] Implement local debug logging for prompt verification
 
-## Phase 5: Aesthetic Polish (Next Focus)
-- [ ] UI visual polish and layout refinement
-- [ ] Add a more "magnificent" visual representation for the duck
-- [ ] Refine the loading/scanning visual feedback in the report panel
-- [ ] Final visual audit (spacing, typography, "bureaucratic" feel)
+## Phase 5: Aesthetic Polish (Current)
+- [x] Apply institutional color palette and bureaucratic typography (Phase 1)
+- [ ] Restructure header and duck "Evidence Exhibit" framing (Phase 2)
+- [ ] Redesign report panel into a "Case Dossier" and restyle action buttons (Phase 3)
+- [ ] Final polish (CSS states, mobile responsiveness) (Phase 4)
 
 ## Phase 6: Final Review
 - [ ] Clean up redundant code/logs

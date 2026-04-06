@@ -9,21 +9,32 @@
 <body>
     <div class="container">
         <header class="site-header">
-            <div class="letterhead-top">
-                <span class="dept-label">Department of Non-Essential Artifacts</span>
+            <div class="ministerial-banner">
+                <div class="crest-placeholder">
+                    <div class="crest-icon">🦉</div>
+                </div>
+                <div class="ministerial-titles">
+                    <div class="main-dept">MINISTRY OF FUNCTIONAL OBJECTS</div>
+                    <div class="sub-dept">DEPARTMENT OF NON-ESSENTIAL ARTIFACTS</div>
+                </div>
                 <nav class="minimal-nav">
                     <a href="#">[ ABOUT ]</a>
                 </nav>
             </div>
             <div class="title-block">
                 <h1>WHAT IS THIS DUCK FOR?</h1>
-                <p class="subtitle">A Serious Inquiry Into the Function of a Rubber Duck</p>
+                <p class="subtitle">Official Inquiry Into the Purpose of Subject #77-B</p>
             </div>
         </header>
 
         <main>
             <section id="subject-area">
                 <div class="exhibit-frame">
+                    <div class="scan-overlay">
+                        <div class="scan-line"></div>
+                        <div class="radar-ring r1"></div>
+                        <div class="radar-ring r2"></div>
+                    </div>
                     <div class="frame-corner top-left"></div>
                     <div class="frame-corner top-right"></div>
                     <div class="frame-corner bottom-left"></div>
@@ -34,17 +45,23 @@
                             <div class="label">SUBJECT: YELLOW DUCK</div>
                         </div>
                     </div>
-                    <div class="exhibit-id">EXHIBIT #77-B / AQUATIC</div>
+                    <div class="exhibit-id">OFFICIAL EXHIBIT #77-B / AQUATIC</div>
                 </div>
             </section>
 
             <section id="actions">
-                <div class="button-grid">
-                    <button class="btn-action btn-primary" onclick="triggerMode('analyze')">ANALYZE THE DUCK</button>
-                    <button class="btn-action btn-secondary" onclick="triggerMode('deeper')">REQUEST DEEPER INTERPRETATION</button>
-                    <button class="btn-action btn-secondary" onclick="triggerMode('ministry')">ESCALATE TO MINISTRY</button>
-                    <button class="btn-action btn-trust" onclick="triggerMode('trust')">TRUST THE DUCK</button>
-                    <button class="btn-action btn-distrust" onclick="triggerMode('distrust')">DO NOT TRUST THE DUCK</button>
+                <div class="system-controls">
+                    <div class="primary-trigger">
+                        <button class="btn-action btn-primary btn-skeuo" onclick="triggerMode('analyze')">INITIATE ANALYSIS</button>
+                    </div>
+                    <div class="secondary-actions">
+                        <button class="btn-action btn-secondary btn-skeuo" onclick="triggerMode('deeper')">REQUEST SECONDARY INTERPRETATION</button>
+                        <button class="btn-action btn-secondary btn-skeuo" onclick="triggerMode('trust')">ACCEPT FUNCTIONAL HYPOTHESIS</button>
+                    </div>
+                    <div class="system-overrides">
+                        <button class="btn-action btn-secondary btn-skeuo" onclick="triggerMode('ministry')">ESCALATE TO MINISTRY</button>
+                        <button class="btn-action btn-distrust btn-skeuo" onclick="triggerMode('distrust')">REJECT CURRENT THEORY</button>
+                    </div>
                 </div>
             </section>
 
@@ -53,12 +70,16 @@
                     <div class="report-header">
                         <div class="report-title">MINISTERIAL ANALYSIS REPORT</div>
                         <div class="report-metadata">
-                            <span>FILE: 2026-DK</span>
-                            <span>STATUS: PENDING</span>
+                            <div class="meta-row"><span>CASE ID:</span> <span>DUCK-042</span></div>
+                            <div class="meta-row"><span>STATUS:</span> <span id="report-status">UNDER INVESTIGATION</span></div>
+                            <div class="meta-row"><span>CONFIDENCE LEVEL:</span> <span id="report-confidence">LOW</span></div>
                         </div>
                     </div>
-                    <div id="output-text">
-                        No official conclusion has been reached yet. Press "Analyze the Duck" to begin the inquiry.
+                    <div id="output-text" class="dossier-body">
+                        No official conclusion has been reached yet. Press "Initiate Analysis" to begin the inquiry.
+                    </div>
+                    <div class="dossier-footer">
+                        <div class="footer-seal">STAMPED: DEPT-77</div>
                     </div>
                 </div>
             </section>

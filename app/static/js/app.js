@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const outputText = document.getElementById('output-text');
+    const reportStatus = document.getElementById('report-status');
+    const reportConfidence = document.getElementById('report-confidence');
     const buttons = document.querySelectorAll('.btn-action');
 
     const modeLabels = {
@@ -17,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>CLASSIFICATION:</strong> ${data.classification}</p>
                 <p><strong>THREAT LEVEL:</strong> <span class="threat-${data.threat_level.toLowerCase()}">${data.threat_level}</span></p>
                 <p><strong>CONFIDENCE:</strong> ${data.confidence}%</p>
-                <hr>
+                <hr style="border: 1px dashed #ccc; margin: 20px 0;">
                 <p><strong>CONCLUSION:</strong> ${data.conclusion}</p>
             </div>
         `;
@@ -29,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const initialLabel = modeLabels[mode] || 'Processing';
         outputText.innerHTML = `<em style="color: #888;">${initialLabel}...</em>`;
+        reportStatus.textContent = 'SCANNING...';
+        reportConfidence.textContent = 'CALCULATING...';
         
         try {
             const response = await fetch('/analyze', {
@@ -48,11 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Artificial delay for "serious" computation drama
             setTimeout(() => {
                 outputText.innerHTML = formatReport(data);
+                reportStatus.textContent = 'AUTHORIZED';
+                reportConfidence.textContent = `${data.confidence}%`;
                 buttons.forEach(btn => btn.disabled = false);
             }, 1000);
             
         } catch (error) {
             outputText.textContent = 'SYSTEM ERROR: The duck has exceeded known interpretive boundaries or API key is missing.';
+            reportStatus.textContent = 'ERROR';
+            reportConfidence.textContent = 'N/A';
             buttons.forEach(btn => btn.disabled = false);
         }
     };

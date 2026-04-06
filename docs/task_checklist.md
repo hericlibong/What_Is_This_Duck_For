@@ -30,7 +30,7 @@ Keep track of the absurdity as it unfolds.
 ## Phase 5: Aesthetic Polish (Current)
 - [x] Apply institutional color palette and bureaucratic typography (Phase 1)
 - [x] Restructure header and duck "Evidence Exhibit" framing (Phase 2)
-- [ ] Redesign report panel into a "Case Dossier" and restyle action buttons (Phase 3)
+- [x] Redesign report panel into a "Case Dossier" and restyle action buttons (Phase 3)
 - [ ] Final polish (CSS states, mobile responsiveness) (Phase 4)
 
 ## Phase 6: Final Review

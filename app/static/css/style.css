@@ -8,11 +8,15 @@
     --distrust-color: #c0392b;
     --font-ui: "Courier New", Courier, monospace; /* Bureaucratic typewriter/data font */
     --font-heading: "Impact", "Times New Roman", serif; /* Serious institutional header */
+    --btn-shadow: 0 4px 0 #888;
+    --btn-shadow-active: 0 1px 0 #888;
 }
 
 body {
     font-family: var(--font-ui);
     background-color: #e8e8e3; /* Slightly darker institutional wall color */
+    background-image: radial-gradient(#d1d1ca 1px, transparent 1px);
+    background-size: 20px 20px;
     color: var(--primary-color);
     margin: 0;
     padding: 40px 20px;
@@ -21,64 +25,81 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     text-align: center;
 }
 
-/* Header Styles */
+/* Header Styles - Ministerial Banner */
 .site-header {
     margin-bottom: 60px;
+    border-bottom: 4px double var(--border-color);
+    padding-bottom: 20px;
+}
+
+.ministerial-banner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
     text-align: left;
 }
 
-.letterhead-top {
+.crest-placeholder {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
+    justify-content: center;
+    background: var(--bg-light);
+    font-size: 2rem;
 }
 
-.dept-label {
+.ministerial-titles {
+    flex-grow: 1;
+}
+
+.main-dept {
+    font-family: "Times New Roman", serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+}
+
+.sub-dept {
+    font-size: 0.7rem;
+    font-weight: bold;
     letter-spacing: 1px;
 }
 
 .minimal-nav a {
     color: var(--primary-color);
     text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: bold;
 }
 
 .minimal-nav a:hover {
     text-decoration: underline;
 }
 
-.title-block {
-    text-align: center;
-}
-
-header h1 {
+.title-block h1 {
     font-family: var(--font-heading);
-    font-size: 3rem;
-    margin: 0 0 5px 0;
+    font-size: 3.5rem;
+    margin: 20px 0 5px 0;
     letter-spacing: -1px;
     text-transform: uppercase;
     line-height: 1;
 }
 
-.subtitle {
+.title-block .subtitle {
     font-family: var(--font-ui);
     color: var(--text-muted);
     font-size: 1rem;
     margin-bottom: 0;
-    text-transform: none;
-    letter-spacing: 0;
-    border-bottom: none;
-    padding-bottom: 0;
+    text-transform: uppercase;
 }
 
 /* Duck Display Area - Exhibit Framing */
@@ -88,18 +109,55 @@ header h1 {
 
 .exhibit-frame {
     position: relative;
-    padding: 40px;
+    padding: 60px;
     border: 1px solid #ccc;
-    background-color: rgba(255,255,255,0.3);
+    background-color: white;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
     display: inline-block;
     margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.scan-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: rgba(241, 196, 15, 0.3);
+    top: 0;
+    animation: scan 4s linear infinite;
+}
+
+.radar-ring {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+}
+
+.r1 { width: 150px; height: 150px; }
+.r2 { width: 250px; height: 250px; border-style: dashed; }
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
 }
 
 .frame-corner {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 3px solid var(--primary-color);
+    width: 30px;
+    height: 30px;
+    border: 4px solid var(--primary-color);
 }
 
 .top-left { top: -2px; left: -2px; border-right: none; border-bottom: none; }
@@ -108,16 +166,18 @@ header h1 {
 .bottom-right { bottom: -2px; right: -2px; border-left: none; border-top: none; }
 
 .exhibit-id {
-    margin-top: 20px;
-    font-size: 0.7rem;
+    margin-top: 30px;
+    font-size: 0.75rem;
     font-weight: bold;
     color: var(--text-muted);
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 .duck-container {
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 2;
 }
 
 .duck-image-placeholder {
@@ -129,12 +189,13 @@ header h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: inset 0 0 0 4px var(--border-color), 0 5px 15px rgba(0,0,0,0.2);
-    border: 4px solid var(--bg-light);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
+    border: 8px solid white;
 }
 
 .duck-emoji {
-    font-size: 6rem;
+    font-size: 7rem;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
 }
 
 .label {
@@ -142,139 +203,163 @@ header h1 {
     font-weight: bold;
     font-size: 0.75rem;
     color: var(--primary-color);
-    background: var(--bg-light);
-    padding: 4px 10px;
-    border: 1px solid var(--border-color);
+    background: white;
+    padding: 4px 12px;
+    border: 2px solid var(--border-color);
     border-radius: 2px;
-    text-transform: uppercase;
 }
 
-/* Actions area */
+/* System Controls - Button Redesign */
 #actions {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
-.button-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-    max-width: 700px;
+.system-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
-.btn-action {
-    font-family: var(--font-ui);
-    font-weight: 700;
-    cursor: pointer;
-    border-radius: 2px; /* Sharper edges */
-    transition: all 0.2s;
-    border: 2px solid var(--border-color);
-    padding: 14px 20px;
-    font-size: 0.85rem;
-    text-transform: uppercase;
+.primary-trigger .btn-primary {
+    width: 100%;
+    max-width: 400px;
+    font-size: 1.2rem;
+    padding: 20px;
+    background: linear-gradient(to bottom, #f1c40f, #d4ac0d);
+    color: #111;
+    border-color: #997300;
+    box-shadow: 0 6px 0 #997300;
+}
+
+.primary-trigger .btn-primary:active {
+    box-shadow: 0 2px 0 #997300;
+    transform: translateY(4px);
+}
+
+.secondary-actions, .system-overrides {
     display: flex;
-    align-items: center;
     justify-content: center;
-    box-shadow: 2px 2px 0px var(--border-color); /* Harsh flat shadow */
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-.btn-action:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none !important;
-    box-shadow: none;
+.btn-skeuo {
+    font-family: var(--font-ui);
+    font-weight: 900;
+    text-transform: uppercase;
+    border: 2px solid #888;
+    background: #eee;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: none;
+    position: relative;
 }
 
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--bg-light);
-    grid-column: 1 / -1; /* Make it full width if possible */
+.btn-secondary.btn-skeuo {
+    padding: 12px 20px;
+    font-size: 0.75rem;
+    box-shadow: var(--btn-shadow);
 }
 
-.btn-secondary {
-    background-color: var(--bg-light);
-    color: var(--primary-color);
+.btn-secondary.btn-skeuo:active {
+    box-shadow: var(--btn-shadow-active);
+    transform: translateY(3px);
 }
 
-.btn-trust {
-    background-color: var(--bg-light);
-    color: var(--trust-color);
-    border-color: var(--trust-color);
-    box-shadow: 2px 2px 0px var(--trust-color);
+.btn-distrust.btn-skeuo {
+    padding: 12px 20px;
+    font-size: 0.75rem;
+    background: #fdedec;
+    border-color: #c0392b;
+    color: #c0392b;
+    box-shadow: 0 4px 0 #922b21;
 }
 
-.btn-distrust {
-    background-color: var(--bg-light);
-    color: var(--distrust-color);
-    border-color: var(--distrust-color);
-    box-shadow: 2px 2px 0px var(--distrust-color);
+.btn-distrust.btn-skeuo:active {
+    box-shadow: 0 1px 0 #922b21;
+    transform: translateY(3px);
 }
 
-.btn-action:hover:not(:disabled) {
-    transform: translate(2px, 2px);
-    box-shadow: 0px 0px 0px var(--border-color);
-}
-
-.btn-trust:hover:not(:disabled) {
-    box-shadow: 0px 0px 0px var(--trust-color);
-}
-
-.btn-distrust:hover:not(:disabled) {
-    box-shadow: 0px 0px 0px var(--distrust-color);
-}
-
-.btn-primary:hover:not(:disabled) { background-color: #000; }
-
-/* Result Panel */
+/* Result Panel - Dossier Feel */
 .report-card {
-    background-color: var(--bg-light);
-    border: 2px solid var(--border-color);
-    border-radius: 2px;
-    padding: 40px;
+    background-color: white;
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    border: 1px solid #ccc;
+    border-radius: 0;
+    padding: 50px;
     text-align: left;
-    box-shadow: 4px 4px 0px var(--border-color); /* Harsh document shadow */
+    box-shadow: 15px 15px 0 rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.report-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 5px;
+    background: repeating-linear-gradient(90deg, #ccc, #ccc 10px, transparent 10px, transparent 20px);
 }
 
 .report-header {
     border-bottom: 2px solid var(--border-color);
-    padding-bottom: 15px;
-    margin-bottom: 30px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
 
 .report-title {
+    font-family: "Times New Roman", serif;
     font-weight: 900;
     color: var(--primary-color);
-    font-size: 1rem;
+    font-size: 1.4rem;
     letter-spacing: 1px;
-    text-transform: uppercase;
 }
 
 .report-metadata {
     font-size: 0.7rem;
     font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-    gap: 2px;
 }
 
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
 
-#output-text {
+.dossier-body {
     font-family: var(--font-ui);
     font-size: 1rem;
-    line-height: 1.6;
-    color: var(--primary-color);
-    min-height: 100px;
+    line-height: 1.8;
+    color: #222;
+    min-height: 150px;
+}
+
+.dossier-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px dashed #ccc;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer-seal {
+    font-weight: 900;
+    border: 3px solid var(--distrust-color);
+    color: var(--distrust-color);
+    padding: 5px 15px;
+    transform: rotate(-5deg);
+    font-size: 0.8rem;
+    opacity: 0.7;
 }
 
 footer {
-    margin-top: 60px;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    border-top: 2px solid var(--border-color);
-    padding-top: 20px;
-    text-transform: uppercase;
+    margin-top: 80px;
+    color: #999;
+    font-size: 0.75rem;
+    border-top: 1px solid #ccc;
+    padding-top: 30px;
+    letter-spacing: 2px;
 }

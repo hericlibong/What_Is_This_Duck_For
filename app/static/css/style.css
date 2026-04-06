@@ -26,29 +26,93 @@ body {
     text-align: center;
 }
 
+/* Header Styles */
+.site-header {
+    margin-bottom: 60px;
+    text-align: left;
+}
+
+.letterhead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.dept-label {
+    letter-spacing: 1px;
+}
+
+.minimal-nav a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.minimal-nav a:hover {
+    text-decoration: underline;
+}
+
+.title-block {
+    text-align: center;
+}
+
 header h1 {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
-    margin-bottom: 5px;
-    letter-spacing: 1px;
+    font-size: 3rem;
+    margin: 0 0 5px 0;
+    letter-spacing: -1px;
     text-transform: uppercase;
+    line-height: 1;
 }
 
 .subtitle {
     font-family: var(--font-ui);
     color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-    display: inline-block;
+    font-size: 1rem;
+    margin-bottom: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
-/* Duck Display Area */
+/* Duck Display Area - Exhibit Framing */
 #subject-area {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
+}
+
+.exhibit-frame {
+    position: relative;
+    padding: 40px;
+    border: 1px solid #ccc;
+    background-color: rgba(255,255,255,0.3);
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.frame-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--primary-color);
+}
+
+.top-left { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.top-right { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+.bottom-left { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+.bottom-right { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+.exhibit-id {
+    margin-top: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: var(--text-muted);
+    letter-spacing: 2px;
 }
 
 .duck-container {
@@ -171,26 +235,32 @@ header h1 {
     box-shadow: 4px 4px 0px var(--border-color); /* Harsh document shadow */
 }
 
-.report-content p {
-    margin: 8px 0;
-}
-
-.threat-negligible { color: var(--trust-color); font-weight: bold; }
-.threat-low { color: var(--trust-color); font-weight: bold; }
-.threat-moderate { color: #d35400; font-weight: bold; }
-.threat-elevated { color: var(--distrust-color); font-weight: bold; }
-.threat-unclear { color: var(--distrust-color); font-weight: bold; }
-
 .report-header {
     border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-    font-weight: 800;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.report-title {
+    font-weight: 900;
     color: var(--primary-color);
-    font-size: 0.9rem;
-    letter-spacing: 2px;
+    font-size: 1rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
 }
+
+.report-metadata {
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    gap: 2px;
+}
+
 
 #output-text {
     font-family: var(--font-ui);

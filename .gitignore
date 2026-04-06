@@ -13,3 +13,4 @@ Thumbs.db
 app/static/img/*
 !app/static/img/.gitkeep
 logs/
+ui_reference/

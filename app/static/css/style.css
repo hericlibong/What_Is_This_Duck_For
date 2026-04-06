@@ -22,6 +22,7 @@ body {
     padding: 40px 20px;
     display: flex;
     justify-content: center;
+    line-height: 1.5;
 }
 
 .container {
@@ -43,6 +44,7 @@ body {
     gap: 20px;
     margin-bottom: 30px;
     text-align: left;
+    flex-wrap: wrap;
 }
 
 .crest-placeholder {
@@ -55,10 +57,12 @@ body {
     justify-content: center;
     background: var(--bg-light);
     font-size: 2rem;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
 }
 
 .ministerial-titles {
     flex-grow: 1;
+    min-width: 200px;
 }
 
 .main-dept {
@@ -66,12 +70,14 @@ body {
     font-weight: 900;
     font-size: 1.4rem;
     letter-spacing: 2px;
+    line-height: 1.1;
 }
 
 .sub-dept {
     font-size: 0.7rem;
     font-weight: bold;
     letter-spacing: 1px;
+    margin-top: 4px;
 }
 
 .minimal-nav a {
@@ -79,15 +85,19 @@ body {
     text-decoration: none;
     font-size: 0.75rem;
     font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid transparent;
 }
 
-.minimal-nav a:hover {
-    text-decoration: underline;
+.minimal-nav a:hover, .minimal-nav a:focus {
+    background: var(--primary-color);
+    color: white;
+    outline: none;
 }
 
 .title-block h1 {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
     margin: 20px 0 5px 0;
     letter-spacing: -1px;
     text-transform: uppercase;
@@ -97,9 +107,10 @@ body {
 .title-block .subtitle {
     font-family: var(--font-ui);
     color: var(--text-muted);
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 0;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Duck Display Area - Exhibit Framing */
@@ -109,7 +120,7 @@ body {
 
 .exhibit-frame {
     position: relative;
-    padding: 60px;
+    padding: clamp(20px, 5vw, 60px);
     border: 1px solid #ccc;
     background-color: white;
     background-image: 
@@ -118,7 +129,9 @@ body {
     background-size: 20px 20px;
     display: inline-block;
     margin: 0 auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.05);
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .scan-overlay {
@@ -132,7 +145,7 @@ body {
     position: absolute;
     width: 100%;
     height: 2px;
-    background: rgba(241, 196, 15, 0.3);
+    background: rgba(241, 196, 15, 0.4);
     top: 0;
     animation: scan 4s linear infinite;
 }
@@ -167,10 +180,11 @@ body {
 
 .exhibit-id {
     margin-top: 30px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: bold;
     color: var(--text-muted);
     letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 .duck-container {
@@ -181,8 +195,8 @@ body {
 }
 
 .duck-image-placeholder {
-    width: 250px;
-    height: 250px;
+    width: clamp(150px, 40vw, 250px);
+    height: clamp(150px, 40vw, 250px);
     background-color: var(--duck-yellow);
     border-radius: 50%;
     display: flex;
@@ -191,10 +205,15 @@ body {
     align-items: center;
     box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
     border: 8px solid white;
+    transition: transform 0.3s ease;
+}
+
+.exhibit-frame:hover .duck-image-placeholder {
+    transform: scale(1.02);
 }
 
 .duck-emoji {
-    font-size: 7rem;
+    font-size: clamp(4rem, 15vw, 7rem);
     filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
 }
 
@@ -207,6 +226,7 @@ body {
     padding: 4px 12px;
     border: 2px solid var(--border-color);
     border-radius: 2px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
 }
 
 /* System Controls - Button Redesign */
@@ -217,7 +237,7 @@ body {
 .system-controls {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -225,15 +245,19 @@ body {
 .primary-trigger .btn-primary {
     width: 100%;
     max-width: 400px;
-    font-size: 1.2rem;
-    padding: 20px;
+    font-size: 1.1rem;
+    padding: 18px;
     background: linear-gradient(to bottom, #f1c40f, #d4ac0d);
     color: #111;
-    border-color: #997300;
+    border: 2px solid #997300;
     box-shadow: 0 6px 0 #997300;
 }
 
-.primary-trigger .btn-primary:active {
+.primary-trigger .btn-primary:hover:not(:disabled) {
+    filter: brightness(1.05);
+}
+
+.primary-trigger .btn-primary:active:not(:disabled) {
     box-shadow: 0 2px 0 #997300;
     transform: translateY(4px);
 }
@@ -253,8 +277,21 @@ body {
     background: #eee;
     border-radius: 4px;
     cursor: pointer;
-    transition: none;
+    transition: transform 0.1s, box-shadow 0.1s;
     position: relative;
+}
+
+.btn-skeuo:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+}
+
+.btn-skeuo:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    filter: grayscale(1);
+    transform: none !important;
+    box-shadow: 0 1px 0 #aaa !important;
 }
 
 .btn-secondary.btn-skeuo {
@@ -263,7 +300,12 @@ body {
     box-shadow: var(--btn-shadow);
 }
 
-.btn-secondary.btn-skeuo:active {
+.btn-secondary.btn-skeuo:hover:not(:disabled) {
+    background: #f8f8f8;
+    border-color: #333;
+}
+
+.btn-secondary.btn-skeuo:active:not(:disabled) {
     box-shadow: var(--btn-shadow-active);
     transform: translateY(3px);
 }
@@ -277,7 +319,11 @@ body {
     box-shadow: 0 4px 0 #922b21;
 }
 
-.btn-distrust.btn-skeuo:active {
+.btn-distrust.btn-skeuo:hover:not(:disabled) {
+    background: #fadbd8;
+}
+
+.btn-distrust.btn-skeuo:active:not(:disabled) {
     box-shadow: 0 1px 0 #922b21;
     transform: translateY(3px);
 }
@@ -288,10 +334,11 @@ body {
     background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
     border: 1px solid #ccc;
     border-radius: 0;
-    padding: 50px;
+    padding: clamp(20px, 6vw, 50px);
     text-align: left;
     box-shadow: 15px 15px 0 rgba(0,0,0,0.05);
     position: relative;
+    overflow: hidden;
 }
 
 .report-card::before {
@@ -303,36 +350,40 @@ body {
 
 .report-header {
     border-bottom: 2px solid var(--border-color);
-    padding-bottom: 20px;
-    margin-bottom: 40px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .report-title {
     font-family: "Times New Roman", serif;
     font-weight: 900;
     color: var(--primary-color);
-    font-size: 1.4rem;
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
     letter-spacing: 1px;
 }
 
 .report-metadata {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: bold;
+    min-width: 150px;
 }
 
 .meta-row {
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    border-bottom: 1px solid #eee;
 }
 
 .dossier-body {
     font-family: var(--font-ui);
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    line-height: 1.6;
     color: #222;
     min-height: 150px;
 }
@@ -352,14 +403,48 @@ body {
     padding: 5px 15px;
     transform: rotate(-5deg);
     font-size: 0.8rem;
-    opacity: 0.7;
+    opacity: 0.6;
+    user-select: none;
 }
+
+/* Threat Level Styling */
+.threat-negligible { color: #888; }
+.threat-low { color: #27ae60; }
+.threat-moderate { color: #f39c12; }
+.threat-elevated { color: #e67e22; }
+.threat-unclear { color: #c0392b; font-weight: bold; }
 
 footer {
     margin-top: 80px;
     color: #999;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     border-top: 1px solid #ccc;
     padding-top: 30px;
     letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Responsive Overrides */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 10px;
+    }
+    
+    .ministerial-banner {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .report-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .report-metadata {
+        width: 100%;
+    }
+    
+    .btn-action {
+        width: 100%;
+    }
 }

@@ -12,26 +12,57 @@ document.addEventListener('DOMContentLoaded', () => {
         'distrust': 'Scanning for Subversive Synthetic Deviations'
     };
 
-    const formatReport = (data) => {
-        return `
-            <div class="report-content">
-                <p><strong>HYPOTHESIS:</strong> ${data.hypothesis}</p>
-                <p><strong>CLASSIFICATION:</strong> ${data.classification}</p>
-                <p><strong>THREAT LEVEL:</strong> <span class="threat-${data.threat_level.toLowerCase()}">${data.threat_level}</span></p>
-                <p><strong>CONFIDENCE:</strong> ${data.confidence}%</p>
-                <hr style="border: 1px dashed #ccc; margin: 20px 0;">
-                <p><strong>CONCLUSION:</strong> ${data.conclusion}</p>
-            </div>
-        `;
+    /**
+     * Progressively types text into an element.
+     * @param {HTMLElement} element - The target element to append words to.
+     * @param {string} text - The text content to type.
+     * @param {number} speed - Base delay between words in ms.
+     */
+    const typeWords = async (element, text, speed = 100) => {
+        if (!text) return;
+        const words = text.split(' ');
+        for (let i = 0; i < words.length; i++) {
+            element.textContent += words[i] + (i === words.length - 1 ? '' : ' ');
+            // Auto-scroll the report body to keep the newest text visible
+            outputText.scrollTop = outputText.scrollHeight;
+            // Visible delay between words (90-120ms range as requested)
+            await new Promise(r => setTimeout(r, speed + Math.random() * 30));
+        }
+    };
+
+    /**
+     * Appends and reveals a report line.
+     */
+    const revealLine = async (container, label, content, className = "") => {
+        const p = document.createElement('p');
+        p.style.margin = '10px 0';
+        p.innerHTML = `<strong>${label}:</strong> `;
+        const span = document.createElement('span');
+        if (className) span.className = className;
+        p.appendChild(span);
+        container.appendChild(p);
+        
+        // Wait for words to type out
+        await typeWords(span, content);
+        // Pause between report sections (400-700ms range as requested)
+        await new Promise(r => setTimeout(r, 600)); 
     };
 
     window.triggerMode = async (mode) => {
         // Disable all buttons during analysis
         buttons.forEach(btn => btn.disabled = true);
         
+        // Reset panel and scroll to top for new analysis
+        outputText.innerHTML = '';
+        outputText.scrollTop = 0;
+        
         const initialLabel = modeLabels[mode] || 'Processing';
-        outputText.innerHTML = `<em style="color: #888;">${initialLabel}...</em>`;
-        reportStatus.textContent = 'SCANNING...';
+        const loadingPrompt = document.createElement('em');
+        loadingPrompt.style.color = '#888';
+        loadingPrompt.textContent = `${initialLabel}...`;
+        outputText.appendChild(loadingPrompt);
+        
+        reportStatus.textContent = 'UNDER REVIEW';
         reportConfidence.textContent = 'CALCULATING...';
         
         try {
@@ -49,16 +80,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
             
-            // Artificial delay for "serious" computation drama
-            setTimeout(() => {
-                outputText.innerHTML = formatReport(data);
-                reportStatus.textContent = 'AUTHORIZED';
-                reportConfidence.textContent = `${data.confidence}%`;
-                buttons.forEach(btn => btn.disabled = false);
-            }, 1000);
+            // Clear the loading prompt and ensure scroll is at top before reveal
+            outputText.innerHTML = '';
+            outputText.scrollTop = 0;
+            
+            const reportContent = document.createElement('div');
+            reportContent.className = 'report-content';
+            outputText.appendChild(reportContent);
+
+            // Progressive Reveal of the dossier sections
+            await revealLine(reportContent, 'HYPOTHESIS', data.hypothesis);
+            await revealLine(reportContent, 'CLASSIFICATION', data.classification);
+            await revealLine(reportContent, 'THREAT LEVEL', data.threat_level, `threat-${data.threat_level.toLowerCase()}`);
+            
+            // Confidence metadata updates after its specific line is typed
+            await revealLine(reportContent, 'CONFIDENCE', `${data.confidence}%`);
+            reportConfidence.textContent = `${data.confidence}%`;
+
+            const hr = document.createElement('hr');
+            hr.style.cssText = 'border: 1px dashed #ccc; margin: 20px 0;';
+            reportContent.appendChild(hr);
+            await new Promise(r => setTimeout(r, 500));
+
+            await revealLine(reportContent, 'CONCLUSION', data.conclusion);
+
+            // Finalize ministerial authorization
+            reportStatus.textContent = 'AUTHORIZED';
+            buttons.forEach(btn => btn.disabled = false);
             
         } catch (error) {
-            outputText.textContent = 'SYSTEM ERROR: The duck has exceeded known interpretive boundaries or API key is missing.';
+            outputText.innerHTML = `<p style="color: var(--distrust-color);">SYSTEM ERROR: The duck has exceeded known interpretive boundaries or API key is missing.</p>`;
             reportStatus.textContent = 'ERROR';
             reportConfidence.textContent = 'N/A';
             buttons.forEach(btn => btn.disabled = false);

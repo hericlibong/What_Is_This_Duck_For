@@ -30,62 +30,66 @@
             <p class="subtitle">A Serious Inquiry Into the Function of a Rubber Duck</p>
         </div>
 
-        <main>
-            <section id="subject-area">
-                <div class="exhibit-frame">
-                    <div class="scan-overlay">
-                        <div class="scan-line"></div>
-                        <div class="radar-ring r1"></div>
-                        <div class="radar-ring r2"></div>
+        <main class="operational-zone">
+            <div class="left-column">
+                <section id="subject-area">
+                    <div class="exhibit-frame">
+                        <div class="scan-overlay">
+                            <div class="scan-line"></div>
+                            <div class="radar-ring r1"></div>
+                            <div class="radar-ring r2"></div>
+                        </div>
+                        <div class="frame-corner top-left"></div>
+                        <div class="frame-corner top-right"></div>
+                        <div class="frame-corner bottom-left"></div>
+                        <div class="frame-corner bottom-right"></div>
+                        <div class="duck-container">
+                            <div class="duck-display-area">
+                                <img src="/static/assets/duck_cutout.png" alt="Subject #77-B: Yellow Duck" class="duck-image">
+                                <div class="label">SUBJECT: YELLOW DUCK</div>
+                            </div>
+                        </div>
+                        <div class="exhibit-id">OFFICIAL EXHIBIT #77-B / AQUATIC</div>
                     </div>
-                    <div class="frame-corner top-left"></div>
-                    <div class="frame-corner top-right"></div>
-                    <div class="frame-corner bottom-left"></div>
-                    <div class="frame-corner bottom-right"></div>
-                    <div class="duck-container">
-                        <div class="duck-display-area">
-                            <img src="/static/assets/duck_cutout.png" alt="Subject #77-B: Yellow Duck" class="duck-image">
-                            <div class="label">SUBJECT: YELLOW DUCK</div>
+                </section>
+
+                <section id="actions">
+                    <div class="system-controls">
+                        <div class="primary-trigger">
+                            <button class="btn-action btn-primary btn-skeuo" onclick="triggerMode('analyze')">ANALYZE THE DUCK</button>
+                        </div>
+                        <div class="secondary-actions">
+                            <button class="btn-action btn-secondary btn-skeuo" onclick="triggerMode('deeper')">REQUEST DEEPER INTERPRETATION</button>
+                            <button class="btn-action btn-secondary btn-skeuo" onclick="triggerMode('trust')">TRUST THE DUCK</button>
+                        </div>
+                        <div class="system-overrides">
+                            <button class="btn-action btn-secondary btn-skeuo" onclick="triggerMode('ministry')">ESCALATE TO MINISTRY</button>
+                            <button class="btn-action btn-distrust btn-skeuo" onclick="triggerMode('distrust')">DO NOT TRUST THE DUCK</button>
                         </div>
                     </div>
-                    <div class="exhibit-id">OFFICIAL EXHIBIT #77-B / AQUATIC</div>
-                </div>
-            </section>
+                </section>
+            </div>
 
-            <section id="actions">
-                <div class="system-controls">
-                    <div class="primary-trigger">
-                        <button class="btn-action btn-primary btn-skeuo" onclick="triggerMode('analyze')">ANALYZE THE DUCK</button>
-                    </div>
-                    <div class="secondary-actions">
-                        <button class="btn-action btn-secondary btn-skeuo" onclick="triggerMode('deeper')">REQUEST DEEPER INTERPRETATION</button>
-                        <button class="btn-action btn-secondary btn-skeuo" onclick="triggerMode('trust')">TRUST THE DUCK</button>
-                    </div>
-                    <div class="system-overrides">
-                        <button class="btn-action btn-secondary btn-skeuo" onclick="triggerMode('ministry')">ESCALATE TO MINISTRY</button>
-                        <button class="btn-action btn-distrust btn-skeuo" onclick="triggerMode('distrust')">DO NOT TRUST THE DUCK</button>
-                    </div>
-                </div>
-            </section>
-
-            <section id="report-panel">
-                <div class="report-card dossier">
-                    <div class="report-header">
-                        <div class="report-title">MINISTERIAL ANALYSIS REPORT</div>
-                        <div class="report-metadata">
-                            <div class="meta-row"><span>CASE ID:</span> <span>DUCK-042</span></div>
-                            <div class="meta-row"><span>STATUS:</span> <span id="report-status">UNDER INVESTIGATION</span></div>
-                            <div class="meta-row"><span>CONFIDENCE LEVEL:</span> <span id="report-confidence">LOW</span></div>
+            <div class="right-column">
+                <section id="report-panel">
+                    <div class="report-card dossier">
+                        <div class="report-header">
+                            <div class="report-title">MINISTERIAL ANALYSIS REPORT</div>
+                            <div class="report-metadata">
+                                <div class="meta-row"><span>CASE ID:</span> <span>DUCK-042</span></div>
+                                <div class="meta-row"><span>STATUS:</span> <span id="report-status">READY</span></div>
+                                <div class="meta-row"><span>CONFIDENCE LEVEL:</span> <span id="report-confidence">--</span></div>
+                            </div>
+                        </div>
+                        <div id="output-text" class="dossier-body">
+                            No official conclusion has been reached yet. Press "Analyze the Duck" to begin the inquiry.
+                        </div>
+                        <div class="dossier-footer">
+                            <div class="footer-seal">STAMPED: DEPT-77</div>
                         </div>
                     </div>
-                    <div id="output-text" class="dossier-body">
-                        No official conclusion has been reached yet. Press "Analyze the Duck" to begin the inquiry.
-                    </div>
-                    <div class="dossier-footer">
-                        <div class="footer-seal">STAMPED: DEPT-77</div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </main>
 
         <footer>

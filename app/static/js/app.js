@@ -49,8 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.triggerMode = async (mode) => {
-        // Disable all buttons during analysis
-        buttons.forEach(btn => btn.disabled = true);
+        // Find the specific button that was clicked
+        const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick')?.includes(mode));
+
+        // Disable all buttons and update active state
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            btn.classList.remove('active-mode');
+        });
+        
+        if (clickedBtn) {
+            clickedBtn.classList.add('active-mode');
+        }
         
         // Reset panel and scroll to top for new analysis
         outputText.innerHTML = '';

@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const reportStatus = document.getElementById('report-status');
     const reportConfidence = document.getElementById('report-confidence');
     const buttons = document.querySelectorAll('.btn-action');
+    const resetBtn = document.getElementById('btn-reset');
+
+    const INITIAL_TEXT = 'No official conclusion has been reached yet. Press "Analyze the Duck" to begin the inquiry.';
 
     const modeLabels = {
         'analyze': 'Initiating Primary Duck Analysis',
@@ -14,18 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Progressively types text into an element.
-     * @param {HTMLElement} element - The target element to append words to.
-     * @param {string} text - The text content to type.
-     * @param {number} speed - Base delay between words in ms.
      */
     const typeWords = async (element, text, speed = 100) => {
         if (!text) return;
         const words = text.split(' ');
         for (let i = 0; i < words.length; i++) {
             element.textContent += words[i] + (i === words.length - 1 ? '' : ' ');
-            // Auto-scroll the report body to keep the newest text visible
             outputText.scrollTop = outputText.scrollHeight;
-            // Visible delay between words (90-120ms range as requested)
             await new Promise(r => setTimeout(r, speed + Math.random() * 30));
         }
     };
@@ -42,27 +40,51 @@ document.addEventListener('DOMContentLoaded', () => {
         p.appendChild(span);
         container.appendChild(p);
         
-        // Wait for words to type out
         await typeWords(span, content);
-        // Pause between report sections (400-700ms range as requested)
         await new Promise(r => setTimeout(r, 600)); 
     };
 
+    /**
+     * Resets the interface to a clean, ready state.
+     */
+    window.openNewCase = () => {
+        // Clear panel
+        outputText.innerHTML = INITIAL_TEXT;
+        outputText.scrollTop = 0;
+        
+        // Reset metadata
+        reportStatus.textContent = 'READY';
+        reportConfidence.textContent = '--';
+        
+        // Hide reset button again until next run
+        if (resetBtn) {
+            resetBtn.style.display = 'none';
+            resetBtn.disabled = false;
+        }
+
+        // Clear active states and enable buttons
+        buttons.forEach(btn => {
+            btn.classList.remove('active-mode');
+            btn.disabled = false;
+        });
+    };
+
     window.triggerMode = async (mode) => {
-        // Find the specific button that was clicked
         const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick')?.includes(mode));
 
-        // Disable all buttons and update active state
+        // Lock interface and show reset button as context action
         buttons.forEach(btn => {
             btn.disabled = true;
             btn.classList.remove('active-mode');
         });
         
-        if (clickedBtn) {
-            clickedBtn.classList.add('active-mode');
+        if (resetBtn) {
+            resetBtn.style.display = 'inline-block';
+            resetBtn.disabled = true;
         }
         
-        // Reset panel and scroll to top for new analysis
+        if (clickedBtn) clickedBtn.classList.add('active-mode');
+        
         outputText.innerHTML = '';
         outputText.scrollTop = 0;
         
@@ -78,19 +100,20 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('/analyze', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ mode: mode }),
             });
             
+            if (response.status === 429) {
+                throw new Error('MINISTERIAL QUOTA EXCEEDED: Too many inquiries. Please wait for the clerks to clear the backlog.');
+            }
+            
             if (!response.ok) {
-                throw new Error('Ministerial Communication Failure');
+                throw new Error('MINISTERIAL COMMUNICATION FAILURE: The duck analysis has been interrupted by an administrative error.');
             }
 
             const data = await response.json();
             
-            // Clear the loading prompt and ensure scroll is at top before reveal
             outputText.innerHTML = '';
             outputText.scrollTop = 0;
             
@@ -98,12 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
             reportContent.className = 'report-content';
             outputText.appendChild(reportContent);
 
-            // Progressive Reveal of the dossier sections
             await revealLine(reportContent, 'HYPOTHESIS', data.hypothesis);
             await revealLine(reportContent, 'CLASSIFICATION', data.classification);
             await revealLine(reportContent, 'THREAT LEVEL', data.threat_level, `threat-${data.threat_level.toLowerCase()}`);
             
-            // Confidence metadata updates after its specific line is typed
             await revealLine(reportContent, 'CONFIDENCE', `${data.confidence}%`);
             reportConfidence.textContent = `${data.confidence}%`;
 
@@ -114,15 +135,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             await revealLine(reportContent, 'CONCLUSION', data.conclusion);
 
-            // Finalize ministerial authorization
             reportStatus.textContent = 'AUTHORIZED';
-            buttons.forEach(btn => btn.disabled = false);
-            
         } catch (error) {
-            outputText.innerHTML = `<p style="color: var(--distrust-color);">SYSTEM ERROR: The duck has exceeded known interpretive boundaries or API key is missing.</p>`;
-            reportStatus.textContent = 'ERROR';
-            reportConfidence.textContent = 'N/A';
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'error-message';
+            errorMsg.textContent = error.message.includes('QUOTA') 
+                ? 'MINISTERIAL OVERLOAD. The department is currently at capacity. Please open a new case and try again shortly.'
+                : 'COMMUNICATION BREAKDOWN. The analysis was terminated prematurely. Access to the duck is temporarily restricted.';
+            
+            outputText.innerHTML = '';
+            outputText.appendChild(errorMsg);
+            reportStatus.textContent = 'TERMINATED';
+            reportConfidence.textContent = 'ERR-0';
+        } finally {
+            // Re-enable everything so user can recover via OPEN NEW CASE
             buttons.forEach(btn => btn.disabled = false);
+            if (resetBtn) resetBtn.disabled = false;
         }
     };
 });

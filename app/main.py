@@ -30,6 +30,14 @@ async def read_root(request: Request):
         context={"title": "WHAT IS THIS DUCK FOR?"}
     )
 
+@app.get("/about", response_class=HTMLResponse)
+async def read_about(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="about.html",
+        context={"title": "About the Inquiry"}
+    )
+
 @app.post("/analyze")
 async def analyze_duck(request_data: AnalyzeRequest):
     valid_modes = ["analyze", "deeper", "ministry", "trust", "distrust"]

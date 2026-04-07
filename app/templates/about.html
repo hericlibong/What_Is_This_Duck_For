@@ -79,9 +79,10 @@
             border: 1px solid #ddd;
             padding: 20px;
             display: flex;
-            gap: 20px;
+            gap: 25px;
             background: #fafafa;
             transition: all 0.2s ease;
+            align-items: center;
         }
 
         .mode-card:hover {
@@ -91,14 +92,25 @@
         }
 
         .mode-icon {
-            font-size: 2.5rem;
-            min-width: 60px;
+            width: 80px;
+            height: 80px;
+            min-width: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: white;
             border: 1px solid #eee;
             border-radius: 4px;
+            padding: 5px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+        }
+
+        .persona-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         .mode-info h3 {
@@ -106,6 +118,8 @@
             font-family: var(--font-ui);
             font-size: 1.1rem;
             color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .mode-info p {
@@ -140,6 +154,7 @@
             .mode-card {
                 flex-direction: column;
                 text-align: center;
+                gap: 15px;
             }
             .mode-icon {
                 margin: 0 auto;
@@ -196,7 +211,9 @@
                 <h2>The five official modes</h2>
                 <div class="mode-grid">
                     <div class="mode-card">
-                        <div class="mode-icon">🧪</div>
+                        <div class="mode-icon">
+                            <img src="/static/assets/analyse_duck_persona.png" alt="Analyze persona" class="persona-img">
+                        </div>
                         <div class="mode-info">
                             <h3>Analyze the Duck</h3>
                             <p>The default technical inquiry. This mode applies unwarranted confidence, observational rigor, and mild pseudo-scientific authority to the duck’s presumed function. Recommended when the situation appears stable, measurable, or deceptively simple.</p>
@@ -204,7 +221,9 @@
                     </div>
 
                     <div class="mode-card">
-                        <div class="mode-icon">🌀</div>
+                        <div class="mode-icon">
+                            <img src="/static/assets/deeper_duck_persona.png" alt="Deeper interpretation persona" class="persona-img">
+                        </div>
                         <div class="mode-info">
                             <h3>Request Deeper Interpretation</h3>
                             <p>A more introspective review for cases in which the duck appears to be doing more than merely floating. This mode is slower, more layered, and more susceptible to emotional over-reading. Suitable for visitors willing to be unsettled by ordinary bath-time objects.</p>
@@ -212,7 +231,9 @@
                     </div>
 
                     <div class="mode-card">
-                        <div class="mode-icon">📁</div>
+                        <div class="mode-icon">
+                            <img src="/static/assets/escalate_ministry_duck_persona.png" alt="Escalate persona" class="persona-img">
+                        </div>
                         <div class="mode-info">
                             <h3>Escalate to Ministry</h3>
                             <p>The administrative route. This mode assumes the duck has one simple official function, but that a petty procedural obstacle has rendered the situation unnecessarily complicated. Expect forms, compliance language, and mild institutional humiliation.</p>
@@ -220,7 +241,9 @@
                     </div>
 
                     <div class="mode-card">
-                        <div class="mode-icon">🕊️</div>
+                        <div class="mode-icon">
+                            <img src="/static/assets/trust_duck_persona.png" alt="Trust persona" class="persona-img">
+                        </div>
                         <div class="mode-info">
                             <h3>Trust the Duck</h3>
                             <p>A calmer interpretive path. This mode proceeds from the reasonable assumption that the duck may, in fact, be quietly helping. It is intended for visitors prepared to accept that certain objects perform small domestic miracles without explanation.</p>
@@ -228,7 +251,9 @@
                     </div>
 
                     <div class="mode-card">
-                        <div class="mode-icon">🚨</div>
+                        <div class="mode-icon">
+                            <img src="/static/assets/do_not_trust_duck_persona.png" alt="Do not trust persona" class="persona-img">
+                        </div>
                         <div class="mode-info">
                             <h3>Do Not Trust the Duck</h3>
                             <p>A defensive analysis protocol for cases involving suspicion, surveillance, unexplained coincidence, or behavioral irregularities in nearby bathroom objects. This mode should not be used lightly, though history suggests it often should have been.</p>

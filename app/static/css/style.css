@@ -198,38 +198,6 @@ body {
     box-sizing: border-box;
 }
 
-.scan-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.scan-line {
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: rgba(241, 196, 15, 0.4);
-    top: 0;
-    animation: scan 4s linear infinite;
-}
-
-.radar-ring {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 50%;
-}
-
-.r1 { width: 120px; height: 120px; }
-.r2 { width: 180px; height: 180px; border-style: dashed; }
-
-@keyframes scan {
-    0% { top: 0; }
-    100% { top: 100%; }
-}
-
 .frame-corner {
     position: absolute;
     width: 20px;
@@ -280,22 +248,10 @@ body {
 }
 
 .duck-image {
-    width: 80%;
+    width: 90%; /* Increased from 80% to 90% */
     height: auto;
     filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
     z-index: 3;
-}
-
-.label {
-    margin-top: 8px;
-    font-weight: bold;
-    font-size: 0.65rem;
-    color: var(--primary-color);
-    background: white;
-    padding: 3px 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 1px;
-    box-shadow: 1px 1px 0 rgba(0,0,0,0.1);
 }
 
 /* System Controls */
@@ -306,7 +262,18 @@ body {
 .system-controls {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px; /* Increased gap for better rhythm */
+}
+
+.primary-trigger {
+    width: 100%;
+}
+
+.secondary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
 }
 
 /* Button Base - Institutional Skeuomorphism */
@@ -319,7 +286,12 @@ body {
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.1s ease;
-    position: relative; /* For tooltips */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 54px; /* Ensure equal height */
 }
 
 .btn-skeuo:disabled {
@@ -564,6 +536,11 @@ body {
 
 .dossier-body::-webkit-scrollbar-thumb:hover {
     background: var(--primary-color);
+}
+
+.dossier-body {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f0f0f0;
 }
 
 .dossier-footer {
